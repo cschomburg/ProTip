@@ -20,13 +20,13 @@ ns.config = {
 	anchor = {
 		mouse = {
 			enabled = true,
-			point = "TOPLEFT",
+			anchor = "TOPLEFT",
 			offsetX = 25,
 			offsetY = -25,
 		},
 
 		fixed = { "BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -13, 34 },
-	}
+	},
 
 	raidIcon = {
 		width = 18,
