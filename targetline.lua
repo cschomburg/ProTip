@@ -5,6 +5,9 @@
 --[[	Provides:
 *display of target of mouseovertarget
 ]]--
+local addon, ns = ...
+local config = ns.config.targetline
+if not config then return end
 
 local tip = CreateFrame("Frame")
 

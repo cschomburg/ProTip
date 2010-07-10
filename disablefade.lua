@@ -1,3 +1,7 @@
+local addon, ns = ...
+local config = ns.config.disablefade
+if not config then return end
+
 GameTooltip.FadeOut = function(self)
 	GameTooltip:Hide()
 end

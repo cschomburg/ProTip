@@ -9,14 +9,11 @@
 *Remove Blizz' PvP tag on the tooltip, as ProTip provides it's own one
 ]]--
 
-local _G = getfenv(0)
+local addon, ns = ...
+local config = ns.config.core
+if not config then return end
 
-local Tipclassif = {
-	["worldboss"] = "Boss",
-	["rareelite"] = "+ Rare",
-	["rare"] = "Rare",
-	["elite"] = "+",
-}
+local _G = getfenv(0)
 
 GameTooltip:HookScript("OnTooltipSetunit", function(self)
 	local _, unit = self:GetUnit()
@@ -35,7 +32,7 @@ GameTooltip:HookScript("OnTooltipSetunit", function(self)
 		elseif UnitIsDND(unit) then
 			status = CHAT_FLAG_DND
 		elseif not UnitIsConnected(unit) then
-			status = "(Off)"
+			status = config.flagOff
 		else
 			status = "" 
 		end
@@ -50,7 +47,7 @@ GameTooltip:HookScript("OnTooltipSetunit", function(self)
 
 	local level = UnitLevel(unit)
 	local classif = UnitClassification(unit)
-	classif = classif and Tipclassif[classif] or ""
+	classif = classif and config.classif[classif] or ""
 	if not level or level == -1 then
 		level = "|cffff0000??|r "
 	else
@@ -67,14 +64,14 @@ GameTooltip:HookScript("OnTooltipSetunit", function(self)
 	
 	local PvPColor
 	if UnitIsFriend("player", unit) then
-		PvPcolor = "|cff00ff00"
+		PvPcolor = config.colorFriendly
 	else
-		PvPcolor = "|cffff0000"
+		PvPcolor = config.colorHostile
 	end
 	
 	local numLines = GameTooltip:NumLines()	
 	if UnitIsPlayer(unit) and UnitIsPVP(unit) and isInInstance ~= "pvp" and isInInstance ~= "arena" and GetZonePVPInfo() ~= "combat" then
-		_G["GameTooltipTextLeft1"]:SetText(PvPcolor.."(PvP) |r"..name)
+		_G["GameTooltipTextLeft1"]:SetText(PvPcolor..config.flagPvP.." |r"..name)
 	else
 		_G["GameTooltipTextLeft1"]:SetText(name)
 	end

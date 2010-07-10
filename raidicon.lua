@@ -6,10 +6,13 @@
 *shows a Raidicon on mouseover if existant
 ]]--
 
+local addon, ns = ...
+local config = ns.config.raidIcon
+if not config then return end
+
 local ricon = GameTooltip:CreateTexture("GameTooltipRaidIcon", "OVERLAY")
-ricon:SetHeight(18)
-ricon:SetWidth(18)
-ricon:SetPoint("TOP", "GameTooltip", "TOP", 0, 5)
+ricon:SetSize(config.width, config.height)
+ricon:SetPoint(unpack(config.point))
 
 GameTooltip:HookScript("OnHide", function(self)
 	ricon:SetTexture(nil)

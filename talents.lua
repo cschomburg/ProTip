@@ -6,6 +6,10 @@
 *Talentsdisplay
 ]]--
 
+local addon, ns = ...
+local config = ns.config.talents
+if not config then return end
+
 local _G = getfenv(0)
 
 local activegroup, maintree
@@ -20,23 +24,24 @@ local function InspectTalents(inspect)
 	for i=1, GetNumTalentTabs(inspect) do
 		local group = GetActiveTalentGroup(inspect)
 		if group == 1 then
-			activegroup = "|cffddff55<|r"
+			activegroup = config.primary
 		elseif group == 2 then
-			activegroup = "|cFFdddd55<<|r"
+			activegroup = config.secondary
 		end
 		talents[i] = {
 			num = select(3, GetTalentTabInfo(i, inspect, nil, group)),
 			name = select(1, GetTalentTabInfo(i, inspect, nil, group)),
 		}
 	end
-	
+
 	for i=1, 3 do
 		if talents[i].num == max(talents[i].num) then
-			maintree = "|cFFffcc22"..talents[i].name.."|r"
+			maintree = "|c"..config.colorMain..talents[i].name.."|r"
 		end
 	end
 	
-	local linetext = ("|cff00ddbb"..talents[1].num.."|r/|cff00ddbb"..talents[2].num.."|r/|cff00ddbb"..talents[3].num.."|r "..maintree.." "..activegroup)
+	local cl = "|c"..config.colorTalent
+	local linetext = (cl..talents[1].num.."|r/"..cl..talents[2].num.."|r/"..cl..talents[3].num.."|r "..maintree.." "..activegroup)
 	
 	if guild and pvp then
 		_G["GameTooltipTextLeft4"]:SetText(linetext)

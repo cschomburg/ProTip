@@ -2,7 +2,9 @@
 ## Author: Lolzen
 ## Title: ProTip
 ## Version: 1.0
-## Notes: Modifies the Gametooltip. No options.
+## Notes: Modifies the Gametooltip. With options. 
+
+config.lua
 
 core.lua
 colors.lua
