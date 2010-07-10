@@ -1,0 +1,17 @@
+## Interface: 30300
+## Author: Lolzen
+## Title: ProTip
+## Version: 1.0
+## Notes: Modifies the Gametooltip. No options.
+
+core.lua
+colors.lua
+healthbar.lua
+targetline.lua
+anchor.lua
+raidicon.lua
+talents.lua
+disablefade.lua
+buffs.lua
+actionbar.lua
+targettedby.lua
