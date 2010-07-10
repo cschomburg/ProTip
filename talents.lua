@@ -30,11 +30,13 @@ local function InspectTalents(inspect)
 		}
 	end
 	
+	local maxNum = 0
 	for i=1, 3 do
-		if talents[i].num == max(talents[i].num) then
-			maintree = "|cFFffcc22"..talents[i].name.."|r"
+		if talents[i].num > maxNum then
+			maxNum = talents[i].num
+			maintree = "|cffffcc22"..talents[i].name.."|r"
 		end
-	end
+	end 
 	
 	local linetext = ("|cff00ddbb"..talents[1].num.."|r/|cff00ddbb"..talents[2].num.."|r/|cff00ddbb"..talents[3].num.."|r "..maintree.." "..activegroup)
 	
@@ -61,10 +63,12 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 	if not unit then return end
 	
 	if UnitIsPlayer(unit) and (UnitLevel(unit) > 9 or UnitLevel(unit) == -1) then
-		if CheckInteractDistance(unit,1) and CanInspect(unit) then
+		if not InspectFrame or not InspectFrame:IsShown() then
+			if CheckInteractDistance(unit,1) and CanInspect(unit) then
 		
-			f:RegisterEvent("INSPECT_TALENT_READY")
-			NotifyInspect(unit)
+				f:RegisterEvent("INSPECT_TALENT_READY")
+				NotifyInspect(unit)
+			end
 		end
 	end
 end)
