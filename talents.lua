@@ -66,7 +66,7 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 	if not unit then return end
 	
 	if UnitIsPlayer(unit) and (UnitLevel(unit) > 9 or UnitLevel(unit) == -1) then
-		if CheckInteractDistance(unit,1) and CanInspect(unit) then
+		if (not InspectFrame or not InspectFrame:IsShown()) and CheckInteractDistance(unit,1) and CanInspect(unit) then
 		
 			f:RegisterEvent("INSPECT_TALENT_READY")
 			NotifyInspect(unit)
