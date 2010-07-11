@@ -48,8 +48,9 @@ local function InspectTalents(inspect)
 		_G["GameTooltipTextLeft3"]:Show()
 	else
 		GameTooltip:AddLine(linetext)
-		GameTooltip:AppendText("")
 	end
+	
+	GameTooltip:AppendText("")
 end
 
 local f = CreateFrame("Frame")
