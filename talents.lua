@@ -36,8 +36,9 @@ local function InspectTalents(inspect)
 			maxNum = talents[i].num
 			maintree = "|cffffcc22"..talents[i].name.."|r"
 		end
-	end 
+	end
 	
+	if not maintree then return end
 	local linetext = ("|cff00ddbb"..talents[1].num.."|r/|cff00ddbb"..talents[2].num.."|r/|cff00ddbb"..talents[3].num.."|r "..maintree.." "..activegroup)
 	
 	if guild and pvp then
