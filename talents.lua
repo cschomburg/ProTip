@@ -39,7 +39,8 @@ local function InspectTalents(inspect)
 			maintree = "|c"..config.colorMain..talents[i].name.."|r"
 		end
 	end
-	
+
+	if not maintree then return end
 	local cl = "|c"..config.colorTalent
 	local linetext = (cl..talents[1].num.."|r/"..cl..talents[2].num.."|r/"..cl..talents[3].num.."|r "..maintree.." "..activegroup)
 	
